@@ -48,6 +48,36 @@ const extractTranslatableFields = (
     return isStringOrText && isNotUID && isLocalizable;
   };
 
+  const traverseBlocks = (
+    blockData: any,
+    path: string[],
+    originalPath: string[]
+  ) => {
+    if (Array.isArray(blockData)) {
+      blockData.forEach((item, index) =>
+        traverseBlocks(item, [...path, String(index)], [...originalPath, String(index)])
+      );
+      return;
+    }
+
+    if (typeof blockData !== 'object' || blockData === null) {
+      return;
+    }
+
+    if (typeof blockData.text === 'string') {
+      translatableFields.push({
+        path: [...path, 'text'],
+        value: blockData.text,
+        originalPath: [...originalPath, 'text'],
+      });
+    }
+
+    Object.entries(blockData).forEach(([key, val]) => {
+      if (key === 'text') return;
+      traverseBlocks(val, [...path, key], [...originalPath, key]);
+    });
+  };
+
   const traverse = (
     schema: Record<string, any>,
     data: Record<string, any>,
@@ -70,7 +100,9 @@ const extractTranslatableFields = (
         return;
       }
 
-      if (fieldSchema.type === 'component') {
+      if (fieldSchema.type === 'blocks') {
+        traverseBlocks(value, [...path, fieldName], [...originalPath, fieldName]);
+      } else if (fieldSchema.type === 'component') {
         const componentSchema = components[fieldSchema.component];
         if (!componentSchema) return;
 
