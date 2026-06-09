@@ -33,6 +33,7 @@
     "watch": "strapi-plugin watch",
     "watch:link": "strapi-plugin watch:link",
     "verify": "strapi-plugin verify",
+    "test": "jest",
     "test:ts:front": "run -T tsc -p admin/tsconfig.json",
     "test:ts:back": "run -T tsc -p server/tsconfig.json"
   },
@@ -46,13 +47,16 @@
     "@strapi/sdk-plugin": "^5.3.2",
     "@strapi/strapi": "^5.15.1",
     "@strapi/typescript-utils": "^5.15.1",
+    "@types/jest": "^30.0.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
+    "jest": "^30.4.2",
     "prettier": "^3.5.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.2",
     "styled-components": "^6.1.18",
+    "ts-jest": "^29.4.11",
     "typescript": "^5.8.3"
   },
   "peerDependencies": {

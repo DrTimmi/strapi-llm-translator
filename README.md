@@ -25,6 +25,7 @@ The Strapi LLM Translator plugin enhances your localization workflow by utilisin
 - **LLM Providers**:
   - OpenAI: `gpt-4o`
   - Azure OpenAI: `gpt-4.1`
+  - Google Gemini: `gemini-2.5-flash`, `gemini-2.5-pro` (via OpenAI compatibility)
   - Groq: `meta-llama/llama-4-scout-17b-16e-instruct`
   - Local: `Ollama`, e.g. `phi4-mini`
 
@@ -73,6 +74,20 @@ After installation, customize the translation behavior through the LLM Translato
 <img alt="Strapi LLM Translator Configuration screen" style="border-radius:5px" src="./docs/strapi-llm-translator-configuration.png" width="640">
 
 ---
+
+---
+
+## 🧪 Testing
+
+This plugin uses Jest for testing the core functionality, such as JSON parsing and brace-balancing logic.
+
+To run the test suite:
+
+```bash
+npm run test
+```
+
+We recommend running the test suite locally before submitting a PR to ensure that all core utilities function as expected.
 
 ## 💻 Plugin Development
 
